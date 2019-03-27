@@ -18,7 +18,6 @@ def half_match_result():
             name = p['name']
             six = p['six_c']
             wicket1 = p['wicket']
-            termf = p['term']
             four = p['four_c']
         json_file.close()
 
@@ -28,7 +27,7 @@ def half_match_result():
     print("$\t\t\t\tRESULT OF FIRST INNINGS\t\t\t\t$")
     print("$\t\t\t\t\t\t\t\t\t\t\t\t\t$")
     print("$\t\t\t\tTEAM NAME :", name, "\t\t\t\t\t$")
-    print("$\t\t\t\tTOTAL SCORE :",total_sc,"\t\t\t\t\t$")
+    print("$\t\t\t\tTOTAL SCORE :", total_sc,"/",wicket1,"\t\t\t\t$")
     print("$\t\t\t\tSIX :",six,"\t\t\t\t\t\t\t$")
     print("$\t\t\t\tFOUR :",four, "\t\t\t\t\t\t\t$")
     print("$\t\t\t\t\t\t\t\t\t\t\t\t\t$")
