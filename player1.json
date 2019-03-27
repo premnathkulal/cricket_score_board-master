@@ -1,10 +1,12 @@
 {
   "people": [
     {
-      "name": "MLO",
-      "total": 101,
-      "six_c": 2,
-      "four_c": 2
+      "name": "PAK",
+      "total": 485,
+      "six_c": 14,
+      "four_c": 17,
+      "wicket": 10,
+      "term": 1
     }
   ]
 }

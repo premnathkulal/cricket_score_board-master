@@ -1,11 +1,10 @@
+
 import  random
-from colorama import Fore, Back, Style
 import json
 import  styles_f
+import display_results
 
 data_list = [6,3,4,2,1,0,'W','WI','NB']
-
-
 
 def playing(team,over,term):
     target = 0
@@ -18,7 +17,7 @@ def playing(team,over,term):
         with open('player1.json','r') as json_file:
             data = json.load(json_file)
             for p in data['people']:
-                target = p['total']
+                target = p['total']+1
             json_file.close()
 
         outfile = open('player2.json', 'w')
@@ -37,9 +36,13 @@ def playing(team,over,term):
 
 
     styles_f.divider()
-    print(Fore.YELLOW +"################--- MATCH STARTED ---###################")
 
-    print(Fore.BLUE+"\n\t\t\t\tBATING : ",team," "+Style.RESET_ALL)
+    if term == 1:
+        print("\n##############--- INNINGS 1 STARTED---###############")
+    else:
+        print("\n##############--- INNINGS 2 STARTED---###############")
+
+    print("\n\t\t\t\tBATING : ",team," ")
     styles_f.divider()
 
     balls = over*6
@@ -94,20 +97,23 @@ def playing(team,over,term):
 
 
         if wicket == 10:
-            disply(dis_ov, over_score_list, total_over_score, count_six, count_four)
+            dis_ov += 1
+            display_results.disply(dis_ov, over_score_list, total_over_score, count_six, count_four,total_score,wicket)
             over_score_list.clear()
-            print(Fore.RED +"######################--ALLOUT--########################"+Style.RESET_ALL)
+            print("\n!!!!!!!!!!!!!!!!!!!!!!!!--ALLOUT--!!!!!!!!!!!!!!!!!!!!!!\n")
             continue
 
         elif(ball_count == 6 and wicket != 10):
             if total_score <= target and term != 1:
-                disply(dis_ov,over_score_list,total_over_score,count_six, count_four)
+                dis_ov += 1
+                display_results.disply(dis_ov,over_score_list,total_over_score,count_six, count_four,total_score,wicket)
                 over_score_list.clear()
                 ball_count = 0
                 total_over_score=0
 
             elif term == 1:
-                disply(dis_ov,over_score_list,total_over_score,count_six, count_four)
+                dis_ov += 1
+                display_results.disply(dis_ov,over_score_list,total_over_score,count_six, count_four,total_score,wicket)
                 over_score_list.clear()
                 ball_count = 0
                 total_over_score = 0
@@ -115,29 +121,24 @@ def playing(team,over,term):
 
         elif (term != 1):
             if total_score > target:
-                disply(dis_ov,over_score_list,total_over_score,count_six, count_four)
+                dis_ov += 1
+                display_results.disply(dis_ov,over_score_list,total_over_score,count_six, count_four,total_score,wicket)
                 over_score_list.clear()
                 ball_count = 0
                 total_over_score = 0
-                print("YOU WON !!!!!!!!!!!!!!!!!")
                 break
+
 
     data['people'] = ([{
         'name': team,
         'total': total_score,
         'six_c': count_six,
-        'four_c': count_four
+        'four_c': count_four,
+        'wicket' : wicket,
+        'term' : term
     }])
     json.dump(data, outfile, indent=2)
 
-
-
-def disply(dis_ov,over_score_list,total_over_score,count_six, count_four):
-    dis_ov += 1
-    print("OVER :", dis_ov)
-    print("\t\t", over_score_list)
-    print(total_over_score, count_six, count_four)
-    styles_f.divider()
 
 
 

@@ -1,10 +1,12 @@
 {
   "people": [
     {
-      "name": "AUS",
-      "total": 103,
-      "six_c": 3,
-      "four_c": 4
+      "name": "IND",
+      "total": 412,
+      "six_c": 12,
+      "four_c": 11,
+      "wicket": 10,
+      "term": 2
     }
   ]
 }

@@ -1,12 +1,11 @@
 import random
 import time
-from colorama import Fore, Back, Style
 import playing_f
 import  styles_f
+import display_results
 
 
-print(Fore.RED + "______________________WELCOME__________________________")
-print(Style.RESET_ALL)
+print( "______________________WELCOME__________________________")
 
 #TEAM AND OVER SETTINGS
 
@@ -37,11 +36,11 @@ time.sleep(0)
 toss_li=['H','T']
 toss = random.choice(toss_li)
 if(toss == ch.upper()):
-    print(Fore.GREEN +"\nYOU WON THE TOSS"+Style.RESET_ALL)
+    print("\nYOU WON THE TOSS")
     print("CHOICE IS YOURSE :\n1)BATING \n2)BOWLING")
     pl_ch = int(input())
 else:
-    print(Fore.RED +"\nYOU LOST THE TOSS"+Style.RESET_ALL)
+    print("\nYOU LOST THE TOSS")
     com_ch = random.choice(['BATING','BOWLING'])
     print("\n"+c_teamN+" CHOOSED ",com_ch)
 
@@ -51,13 +50,19 @@ second = 2
 if (pl_ch == 1):
 
     playing_f.playing(u_teamN, over, first)
+    display_results.half_match_result()
     playing_f.playing(c_teamN, over, second)
+    styles_f.loading()
+    display_results.match_result()
 
 else:
 
     playing_f.playing(c_teamN, over, first)
+    display_results.half_match_result()
     playing_f.playing(u_teamN, over, second)
+    styles_f.loading()
+    display_results.match_result()
 
-styles_f.divider()
+
 
 

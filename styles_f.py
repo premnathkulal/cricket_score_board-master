@@ -1,15 +1,11 @@
-from colorama import Fore, Back, Style
 import time
 
 def divider():
-    print(Fore.RED +"_______________________________________________________ ")
-    print(Style.RESET_ALL)
+    print("_______________________________________________________ ")
 
-'''def loading():
+def loading():
     i=0
     while(i<2):
-        print(".")
-        time.sleep(1)
+        time.sleep(0.02)
         i+=1
-    print(".")'''
 
